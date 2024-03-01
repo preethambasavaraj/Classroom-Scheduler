@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-
+scale=1.0">
+
+    <title>Student Database</title>
+</head>
+
+<body>
+    <h1>Student Database</h1>
+    <ol id="studentsList"></ol>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const studentsList =
+                    document.getElementById('studentsList');
+                    fetch('/students')
+                    .then(response => response.json())
+            .then(data => {
+                
+                data.forEach(student => {
+                    const li = document.createElement('li');
+                    li.textContent = `${student.studentname} ---${student.usn}`;
+                    studentsList.appendChild(li);
+        })
+        
+            
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+
+</html>
